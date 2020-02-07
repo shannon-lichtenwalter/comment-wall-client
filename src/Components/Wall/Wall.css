@@ -1,0 +1,17 @@
+.wall {
+  border: 1px solid lightgray;
+  width: 70%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.comments > li {
+  list-style: none;
+  margin: 10px;
+}
+
+.comments {
+  margin: 0px;
+  padding-left: 0px;
+}

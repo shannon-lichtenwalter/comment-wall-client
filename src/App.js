@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Wall from './Components/Wall/Wall';
+import CommentBox from './Components/CommentBox/CommentBox';
+import CommentsApiService from './Services/comments-api-service';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+class App extends React.Component{
+  state = {
+    commentData: []
+  }
+
+  addComment = (user, comment) => {
+    console.log('adding');
+    let currentComments = this.state.commentData;
+    currentComments.push({user, comment})
+    console.log(currentComments);
+    this.setState({
+      commentData: currentComments,
+    })
+  }
+
+  componentDidMount = () => {
+    let data = CommentsApiService.getAllComments();
+      this.setState({
+        commentData:data
+      })
+  }
+  render(){
+    return (
+    <main className='App'>
+      <Wall commentData={this.state.commentData}/>
+      <CommentBox addComment={this.addComment}/>
+    </main>
   );
+  }
+  
 }
 
 export default App;
