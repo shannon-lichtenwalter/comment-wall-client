@@ -1,24 +1,6 @@
-let commentData = [
-  {
-    user: 'Joe',
-    comment: 'hi guys'
-  },
-  {
-    user: 'Jane',
-    comment: 'Hello!'
-  },
-  {
-    user: 'Josh',
-    comment: 'Coolio'
-  }
-]
 const CommentsApiService = {
   getAllComments(){
-    return commentData
-  },
-
-  getAllCommentsTwo(){
-    return fetch(`https://localhost/8000/api/comments`, {
+    return fetch(`http://localhost:8000/api/comments`, {
       method: 'GET',
     })
       .then(res =>
@@ -28,13 +10,13 @@ const CommentsApiService = {
       );
   },
 
-  postComment(user, comment){
-    return fetch(`https://localhost/8000/api/comments`, {
+  postComment(username, comment, date){
+    return fetch(`http://localhost:8000/api/comments`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify({user, comment})
+      body: JSON.stringify({username, comment, date})
     })
       .then(res =>
         (!res.ok)

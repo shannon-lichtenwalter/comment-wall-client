@@ -8,25 +8,27 @@ class App extends React.Component{
     commentData: []
   }
 
-  addComment = (user, comment) => {
-    console.log('adding');
+  addComment = (username, comment, date) => {
+    console.log(date);
     let currentComments = this.state.commentData;
-    currentComments.push({user, comment})
-    console.log(currentComments);
+    currentComments.push({username, comment, date})
     this.setState({
       commentData: currentComments,
     })
   }
 
   componentDidMount = () => {
-    let data = CommentsApiService.getAllComments();
+    CommentsApiService.getAllComments().then(data => {
       this.setState({
         commentData:data
       })
+    });
+      
   }
   render(){
     return (
     <main className='App'>
+      <h1>The Wall</h1>
       <Wall commentData={this.state.commentData}/>
       <CommentBox addComment={this.addComment}/>
     </main>

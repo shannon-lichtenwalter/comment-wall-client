@@ -5,9 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.timestamp {
+  margin-right: 20px;
+  color: lightblue;
+  font-weight: bolder; 
+}
+
+@media screen and (min-width: 900px) {
+  .App {
+    width: 60%;
+  }
 }
